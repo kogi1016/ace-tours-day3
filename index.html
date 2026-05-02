@@ -5,32 +5,38 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Day-3 Yosemite | ACE TOURS 77기</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
   :root {
-    --yosemite-green: #1a4332; /* 요세미티 숲 색상 */
-    --emerald: #00c9a7;
+    --border: rgba(255, 255, 255, 0.09);
+    --radius: 20px;
+    --emerald: #00c9a7; /* 요세미티 포인트 컬러 */
     --gold: #FFD700;
     --text: #f0f4ff;
     --sub: #8896b3;
-    --radius: 24px;
-    --border: rgba(255, 255, 255, 0.08);
+    --bg-dark: #04060f;
   }
 
   * { margin:0; padding:0; box-sizing:border-box; }
 
   body {
-    font-family:'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR', 'Poppins', sans-serif;
     color: var(--text);
-    /* 요세미티 느낌의 딥그린 그라데이션 */
-    background: radial-gradient(circle at 0% 0%, #0d2b1f 0%, #04060f 70%);
+    /* ace-notice 특유의 어두운 그라데이션 배경 */
+    background: 
+      radial-gradient(ellipse 80% 40% at 0% 0%, rgba(0, 201, 167, 0.15) 0%, transparent 100%),
+      radial-gradient(circle at 100% 100%, rgba(0, 201, 167, 0.08) 0%, transparent 100%),
+      var(--bg-dark);
     background-attachment: fixed;
-    padding: 30px 20px;
+    padding: 40px 20px;
     min-height: 100vh;
+    line-height: 1.6;
   }
 
-  /* 하단 네온 라인 (에메랄드 빛) */
+  /* 하단 에메랄드 네온 라인 */
   body::after {
     content: ''; position: fixed; bottom: 0; left: 0; width: 100%; height: 2px;
     background: linear-gradient(90deg, transparent 0%, var(--emerald) 50%, transparent 100%);
@@ -39,102 +45,119 @@
 
   .wrap { max-width: 450px; margin: 0 auto; }
 
-  .header { text-align: center; margin-bottom: 30px; border-bottom: 1px solid rgba(0, 201, 167, 0.2); padding-bottom: 20px; }
-  .label { font-family: 'Poppins'; font-weight: 700; font-size: 13px; letter-spacing: 3px; color: var(--emerald); }
-  .main-title { font-family: 'Poppins'; font-weight: 900; font-size: 40px; text-shadow: 0 0 20px rgba(0, 201, 167, 0.4); margin: 5px 0; line-height: 1.1; }
-  .date-info { font-size: 16px; color: var(--gold); font-weight: 700; margin-top: 5px; }
+  /* 헤더 스타일 */
+  .header { text-align: center; margin-bottom: 35px; }
+  .label { font-family: 'Poppins'; font-weight: 700; font-size: 13px; letter-spacing: 4px; color: var(--emerald); text-transform: uppercase; }
+  .main-title { font-family: 'Poppins'; font-weight: 900; font-size: 44px; line-height: 1; text-shadow: 0 0 25px rgba(0, 201, 167, 0.5); margin: 10px 0; }
+  .date-box { font-size: 15px; color: var(--gold); font-weight: 700; letter-spacing: -0.5px; }
 
+  /* 카드 공통 스타일 */
   .card {
-    background: rgba(15, 20, 48, 0.6);
+    background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(10px);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 22px;
+    padding: 25px;
     margin-bottom: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
   }
 
-  .section-title { font-weight: 900; font-size: 17px; color: var(--emerald); margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
-  
-  /* 가이드 공지 스타일 */
-  .guide-msg { font-size: 14px; line-height: 1.7; color: #cbd5e1; position: relative; padding-left: 15px; }
-  .guide-msg::before { content: '"'; position: absolute; left: 0; top: -5px; font-size: 25px; color: var(--emerald); opacity: 0.5; }
+  .card-title { font-weight: 900; font-size: 17px; color: var(--emerald); margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
 
-  .info-row { display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; font-size: 14px; }
-  .info-label { color: var(--sub); font-weight: 700; }
-  .info-value { text-align: right; font-weight: 500; }
+  /* 가이드 공지 */
+  .msg-box { font-size: 14.5px; line-height: 1.8; color: #cbd5e1; }
 
-  .highlight-box { background: rgba(0, 201, 167, 0.1); padding: 15px; border-radius: 15px; border: 1px dashed var(--emerald); margin-top: 10px; }
-  
-  .weather-badge { background: #2c3e50; padding: 10px; border-radius: 12px; display: flex; justify-content: space-around; align-items: center; }
+  /* 픽업 정보 리스트 */
+  .info-list { margin-top: 10px; }
+  .info-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .info-item:last-child { border-bottom: none; }
+  .info-label { color: var(--sub); font-size: 14px; }
+  .info-val { font-weight: 700; font-size: 15px; }
 
-  .footer { text-align: center; font-size: 12px; color: #555; margin-top: 40px; font-family: 'Poppins'; letter-spacing: 1px; }
+  /* 날씨 섹션 */
+  .weather-box {
+    background: rgba(0, 201, 167, 0.1);
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid rgba(0, 201, 167, 0.2);
+  }
+
+  .weather-item { text-align: center; }
+  .weather-temp { font-family: 'Poppins'; font-size: 20px; font-weight: 700; color: var(--gold); }
+
+  /* 경고/주의 섹션 */
+  .alert-card { border-left: 4px solid #e74c3c; }
+  .alert-item { font-size: 13.5px; margin-bottom: 8px; display: flex; gap: 8px; }
+
+  .footer { text-align: center; margin-top: 50px; opacity: 0.4; font-family: 'Poppins'; letter-spacing: 2px; font-size: 12px; }
 </style>
 </head>
 <body>
 
 <div class="wrap">
   <div class="header">
-    <div class="label">ACE TOURS 77기 SPECIAL</div>
+    <div class="label">Ace Tours 77th Special</div>
     <div class="main-title">DAY-3<br>YOSEMITE</div>
-    <div class="date-info">2026년 5월 3일 일요일</div>
+    <div class="date-box">2026. 05. 03 (SUN)</div>
   </div>
 
   <div class="card">
-    <div class="section-title">📢 제이 가이드 공지</div>
-    <div class="guide-msg">
-      모두들 즐거운 시간 보내고 계신지요? 시차 때문에 피곤하시겠지만 그럴 때일수록 더 부지런히 다니셔야 금방 극복하실 수 있답니다. ^^ 오늘도 샌프란시스코를 제대로 느껴보시기 바랍니다. 내일 일정 공지드리니 차질 없으시길 바래요!
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="section-title">🚐 픽업 및 체크아웃</div>
-    <div class="info-row">
-      <div class="info-label">픽업 시간</div>
-      <div class="info-value" style="color:var(--gold); font-size:18px;">오전 06:00 정각</div>
-    </div>
-    <div class="info-row">
-      <div class="info-label">픽업 장소</div>
-      <div class="info-value">어제 내린 장소</div>
-    </div>
-    <div class="highlight-box">
-      <p style="font-size:13px; color:var(--emerald);">
-        ✔ 호텔 룸키 꼭 반납해 주세요!<br>
-        ✔ 이동 시 필요한 물품은 미리 챙기기 (트렁크 개방 어려움)<br>
-        ✔ <strong>방에 두고 나오는 물건 없는지 수차례 확인 필수!</strong>
-      </p>
+    <div class="card-title">📢 JAY'S NOTICE</div>
+    <div class="msg-box">
+      모두들 즐거운 시간 보내고 계신지요? 시차 때문에 힘들고 피곤하시겠지만, 그럴수록 부지런히 다니셔야 금방 극복하실 수 있답니다! 오늘도 샌프란시스코를 제대로 느껴보세요. 내일 일정 안내드립니다.
     </div>
   </div>
 
   <div class="card">
-    <div class="section-title">🌤️ 요세미티 날씨</div>
-    <div class="weather-badge">
-      <div>최저 <span style="color:#60a5fa;">8°C</span></div>
-      <div style="font-size:20px;">맑음 ☀️</div>
-      <div>최고 <span style="color:#fbbf24;">21°C</span></div>
+    <div class="card-title">🚐 PICKUP INFO</div>
+    <div class="info-list">
+      <div class="info-item">
+        <span class="info-label">출발 시간</span>
+        <span class="info-val" style="color:var(--gold); font-size:18px;">06:00 AM 정각</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">픽업 장소</span>
+        <span class="info-val">어제 내린 장소</span>
+      </div>
     </div>
-    <p style="font-size:12px; color:var(--sub); margin-top:10px; text-align:center;">* 산악 지형으로 일교차가 크니 옷차림에 유의하세요.</p>
   </div>
 
   <div class="card">
-    <div class="section-title">🍴 식사 안내</div>
-    <div class="info-row"><div class="info-label">아침</div><div class="info-value">맥모닝 (출발 후 1시간 40분 뒤)</div></div>
-    <div class="info-row"><div class="info-label">점심</div><div class="info-value">요세미티 내 카페테리아</div></div>
-    <div class="info-row"><div class="info-label">저녁</div><div class="info-value">하와이언 BBQ</div></div>
+    <div class="card-title">🌤️ WEATHER</div>
+    <div class="weather-box">
+      <div class="weather-item">
+        <div style="font-size:11px; color:var(--sub);">MIN</div>
+        <div class="weather-temp" style="color:#60a5fa;">8°C</div>
+      </div>
+      <div style="font-size:24px;">☀️</div>
+      <div class="weather-item">
+        <div style="font-size:11px; color:var(--sub);">MAX</div>
+        <div class="weather-temp">21°C</div>
+      </div>
+    </div>
   </div>
 
-  <div class="card" style="border-color: var(--gold);">
-    <div class="section-title">🎒 필수 준비물</div>
-    <p style="font-size:14px; line-height:1.8;">
-      👕 <strong>밝은색 옷 추천</strong> (사진이 정말 잘 나와요! ^^)<br>
-      🧥 <strong>긴팔/따뜻한 옷 필수</strong> (산속은 쌀쌀합니다)<br>
-      ☀️ 선크림, 선글라스, 모자 꼭 챙기세요!
-    </p>
+  <div class="card">
+    <div class="card-title">🍴 MEALS & PLAN</div>
+    <div class="info-item"><span class="info-label">조식</span><span class="info-val">맥모닝 (이동 중)</span></div>
+    <div class="info-item"><span class="info-label">중식</span><span class="info-val">요세미티 카페테리아</span></div>
+    <div class="info-item"><span class="info-label">석식</span><span class="info-val">하와이언 BBQ</span></div>
+  </div>
+
+  <div class="card alert-card">
+    <div class="card-title" style="color:#e74c3c;">⚠️ CHECKLIST</div>
+    <div class="alert-item"><span>📍</span> <span>호텔 룸키를 반드시 반납해 주세요.</span></div>
+    <div class="alert-item"><span>📍</span> <span><b>밝은색 옷</b>이 사진 촬영 시 훨씬 예쁩니다!</span></div>
+    <div class="alert-item"><span>📍</span> <span>산속은 추우니 <b>긴팔/따뜻한 옷</b> 필수 지참!</span></div>
+    <div class="alert-item"><span>📍</span> <span>방을 떠나기 전 두고 온 물건이 없는지 확인!</span></div>
   </div>
 
   <div class="footer">
     ACE TOURS | JAY GUIDE<br>
-    © 2026 ACE TOURS. ALL RIGHTS RESERVED.
+    © 2026 ALL RIGHTS RESERVED.
   </div>
 </div>
 
